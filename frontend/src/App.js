@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
 
-      <main>
+      <main className='my-3'>
         <Container>
           <h1>Ecommerce app</h1>
           <HomeScreen />
