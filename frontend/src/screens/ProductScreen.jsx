@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import Rating from '../components/Rating';
 
 const ProductScreen = ({ product }) => {
   return (
@@ -15,10 +16,11 @@ const ProductScreen = ({ product }) => {
             </Card.Title>
           </a>
         </Card.Body>
-        <Card.Text>
-          <div className='my 3'>
-            {product.rating} from {product.numReviews} reviews
-          </div>
+        <Card.Text as='div'>
+          <Rating
+            value={product.rating}
+            text={`${product.numReviews} reviews`}
+          />
         </Card.Text>
         <Card.Text as='div'>$ {product.price}</Card.Text>
       </Card>
