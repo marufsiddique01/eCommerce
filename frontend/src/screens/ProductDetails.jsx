@@ -1,5 +1,6 @@
-import React from 'react';
-import Product from '../products';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import Rating from '../components/Rating';
 import { Link } from 'react-router-dom';
 import {
@@ -12,7 +13,17 @@ import {
 } from 'react-bootstrap';
 
 const ProductDetails = ({ match }) => {
-  const product = Product.find((p) => p._id === match.params.id);
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const req = await axios.get(
+        `http://localhost:8080/products/${match.params.id}`
+      );
+      setProduct(req.data);
+    };
+    fetchProduct();
+  }, [match]);
+
   return (
     <div>
       <Link to='/' className='btn btn-light'>

@@ -1,7 +1,7 @@
 const products = [
   {
     _id: '1',
-    name: 'boAt Airdopes 121v2 TWS Earbuds',
+    name: 'PIPO Airdopes 121v2 TWS Earbuds',
     image: '/images/boatHeadfone.jpg',
     description:
       'boAt Airdopes 121v2 TWS Earbuds with Bluetooth V5.0, Immersive Audio, Up to 14H Total Playback, Instant Voice Assistant, Easy Access Controls with Mic and Dual Tone Ergonomic Design(Active Black) ',

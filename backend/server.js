@@ -1,7 +1,20 @@
 const express = require('express');
-const products = require('./data/products');
+const products = require('./data/products.js');
+const Cors = require('cors');
 
+//app configs
 const app = express();
+const port = process.env.PORT || 8080;
+
+//middlewares
+app.use(express.json());
+app.use(Cors());
+
+//db configs
+
+//API Endpoints
+
+app.get('/', (req, res) => res.status(200).send('Hello World'));
 
 app.get('/', (req, res) => {
   res.send('<h1> Hello world</h1>');
@@ -16,6 +29,5 @@ app.get('/products/:id', (req, res) => {
   res.json(product);
 });
 
-app.listen(8000, () => {
-  console.log('server running on port 8000');
-});
+//Listener
+app.listen(port, () => console.log(`listening on localhost: ${port}`));
