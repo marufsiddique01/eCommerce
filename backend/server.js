@@ -1,10 +1,13 @@
 const express = require('express');
 const products = require('./data/products.js');
 const Cors = require('cors');
+const dotenv = require('dotenv');
+
+//dotenv config
+dotenv.config();
 
 //app configs
 const app = express();
-const port = process.env.PORT || 8080;
 
 //middlewares
 app.use(express.json());
@@ -30,4 +33,5 @@ app.get('/products/:id', (req, res) => {
 });
 
 //Listener
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`listening on localhost: ${port}`));
