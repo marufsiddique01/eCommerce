@@ -1,4 +1,5 @@
 const express = require('express');
+require('colors');
 const products = require('./data/products.js');
 const Cors = require('cors');
 const dotenv = require('dotenv');
@@ -37,4 +38,4 @@ app.get('/products/:id', (req, res) => {
 
 //Listener
 const port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`listening on localhost: ${port}`));
+app.listen(port, () => console.log(`listening on localhost: ${port}`.inverse));
