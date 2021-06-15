@@ -2,9 +2,12 @@ const express = require('express');
 const products = require('./data/products.js');
 const Cors = require('cors');
 const dotenv = require('dotenv');
+const connectDb = require('./config/config');
 
 //dotenv config
 dotenv.config();
+//Connecting to mongoDB
+connectDb();
 
 //app configs
 const app = express();
