@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
+const { errorHandler } = require('./middlewares/errorMiddleware');
+
 require('colors');
 const products = require('./data/products');
 const dotenv = require('dotenv');
@@ -18,6 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', cors(), productRoutes);
+app.use(errorHandler);
 
 const PORT = 8080;
 app.listen(process.env.PORT || PORT, () => {
