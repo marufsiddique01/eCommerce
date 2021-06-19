@@ -1,41 +1,28 @@
 const express = require('express');
+const cors = require('cors');
+
 require('colors');
-const products = require('./data/products.js');
-const Cors = require('cors');
+const products = require('./data/products');
 const dotenv = require('dotenv');
 const connectDb = require('./config/config');
+const productRoutes = require('./routes/productsRoute');
 
-//dotenv config
 dotenv.config();
-//Connecting to mongoDB
+//connecting to mongodb database
 connectDb();
-
-//app configs
 const app = express();
 
-//middlewares
-app.use(express.json());
-app.use(Cors());
-
-//db configs
-
-//API Endpoints
-
-app.get('/', (req, res) => res.status(200).send('Hello World'));
-
+//dotenv config
 app.get('/', (req, res) => {
-  res.send('<h1> Hello world</h1>');
+  res.send('<h1>Welcome to Node Server</h1>');
 });
 
-app.get('/products', (req, res) => {
-  res.json(products);
-});
+app.use('/api', cors(), productRoutes);
 
-app.get('/products/:id', (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
+const PORT = 8080;
+app.listen(process.env.PORT || PORT, () => {
+  console.log(
+    `Server Running in ${process.env.NODE_ENV} Mode on Port ${process.env.PORT}`
+      .inverse
+  );
 });
-
-//Listener
-const port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`listening on localhost: ${port}`.inverse));
