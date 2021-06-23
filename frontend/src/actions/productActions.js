@@ -1,21 +1,20 @@
 import axios from 'axios';
-
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAILS,
 } from '../constants/productConstant';
 
-export const listProducts = () => async (disptach) => {
+export const listProducts = () => async (dispatch) => {
   try {
-    disptach({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get('/api/products');
-    disptach({
+    dispatch({ type: PRODUCT_LIST_REQUEST });
+    const { data } = await axios.get('http://localhost:8080/api/products');
+    dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
     });
   } catch (error) {
-    disptach({
+    dispatch({
       type: PRODUCT_LIST_FAILS,
       payload:
         error.response && error.response.data.message
