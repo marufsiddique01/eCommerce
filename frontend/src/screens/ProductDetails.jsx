@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Rating from '../components/Rating';
+import { listProductDetails } from '../actions/productActions';
 import { Link } from 'react-router-dom';
 import {
   Row,
@@ -10,17 +12,21 @@ import {
   Image,
   ListGroupItem,
 } from 'react-bootstrap';
+
 const ProductDetails = ({ match }) => {
-  const [product, setProduct] = useState([]);
+  const dispatch = useDispatch();
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
   useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(
-        `http://localhost:8080/api/products/${match.params.id}`
-      );
-      setProduct(data);
-    };
-    fetchProduct();
-  }, [match]);
+    dispatch(listProductDetails(match.params.id));
+    // const fetchProduct = async () => {
+    //   const { data } = await axios.get(
+    //     `http://localhost:8080/api/products/${match.params.id}`
+    //   );
+    //   setProduct(data);
+    // };
+    // fetchProduct();
+  }, [dispatch, match]);
 
   return (
     <div>
