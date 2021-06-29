@@ -12,7 +12,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'react-bootstrap';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -30,7 +30,7 @@ const CartScreen = ({ match, location, history }) => {
   console.log(cartItems);
 
   const removeFromCartHandler = (id) => {
-    console.log('remove');
+    dispatch(removeFromCart(id));
   };
 
   const checkout = () => {
@@ -78,7 +78,10 @@ const CartScreen = ({ match, location, history }) => {
                         variant='light'
                         onClick={() => removeFromCartHandler(item.product)}
                       >
-                        <i className='fa fa-trash' aria-hidden='true'></i>
+                        <i
+                          className='fa fa-trash text-danger'
+                          aria-hidden='true'
+                        ></i>
                       </Button>
                     </Col>
                   </Row>
