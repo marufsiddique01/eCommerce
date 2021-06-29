@@ -5,10 +5,12 @@ import {
   productListReducer,
   productDetailsReducer,
 } from './reducers/productReducer';
+import { cartReducer } from './reducers/cartReducer';
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  cart: cartReducer,
 }); //multiple functions are called reducers.
 
 const initialState = {}; //initialState that manages initial state
