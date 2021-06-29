@@ -7,13 +7,20 @@ import {
 } from './reducers/productReducer';
 import { cartReducer } from './reducers/cartReducer';
 
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
+
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
 }); //multiple functions are called reducers.
 
-const initialState = {}; //initialState that manages initial state
+const initialState = {
+  cart: { cartItems: cartItemsFromStorage },
+  // cart: { cartItems: 'PipoXyz' },
+}; //initialState that manages initial state
 
 const middleware = [thunk]; //thunk acts as a middleware between react and redux. array because multiple middlewares
 //define store
