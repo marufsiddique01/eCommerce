@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
+const usersRoute = require('./routes/usersRoute');
+
 const { errorHandler } = require('./middlewares/errorMiddleware');
 
 require('colors');
@@ -14,12 +16,17 @@ dotenv.config();
 connectDb();
 const app = express();
 
+//middleware bodyparser
+app.use(express.json());
+
 //dotenv config
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to Node Server</h1>');
 });
 
 app.use('/api', cors(), productRoutes);
+app.use('/api/users', cors(), usersRoute);
+
 app.use(errorHandler);
 
 const PORT = 8080;
