@@ -6,6 +6,11 @@ import {
   productDetailsReducer,
 } from './reducers/productReducer';
 import { cartReducer } from './reducers/cartReducer';
+import { userLoginReducer } from './reducers/userReducer';
+
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null;
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
@@ -15,10 +20,12 @@ const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
+  userLogin: userLoginReducer,
 }); //multiple functions are called reducers.
 
 const initialState = {
   cart: { cartItems: cartItemsFromStorage },
+  userLogin: { userInfo: userInfoFromStorage },
   // cart: { cartItems: 'PipoXyz' },
 }; //initialState that manages initial state
 

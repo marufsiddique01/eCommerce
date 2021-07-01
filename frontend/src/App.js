@@ -7,6 +7,7 @@ import Header from './components/header';
 import HomeScreen from './screens/HomeScreen';
 import ProductDetails from './screens/ProductDetails';
 import CartScreen from './screens/CartScreen';
+import LoginScreen from './screens/LoginScreen';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductDetails} exact />
           <Route path='/cart/:id?' component={CartScreen} exact />
+          <Route path='/login' component={LoginScreen} exact />
         </Container>
       </main>
 
