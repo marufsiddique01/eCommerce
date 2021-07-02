@@ -6,6 +6,7 @@ const {
   authController,
   getUserProfile,
   registerUser,
+  updateUserProfile,
 } = require('../controllers/usersController');
 
 const router = express.Router();
@@ -16,7 +17,10 @@ router.post('/login', authController);
 
 //get user profile or private route
 
-router.route('/profile').get(protect, getUserProfile);
+router
+  .route('/profile')
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile);
 
 //registration
 
