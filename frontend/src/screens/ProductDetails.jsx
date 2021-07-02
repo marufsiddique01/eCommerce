@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import Rating from '../components/Rating';
-import { listProductDetails } from '../actions/productActions';
 import { Link } from 'react-router-dom';
+import { listProductDetails } from '../actions/productActions';
 import {
   Row,
   Col,
@@ -13,34 +12,26 @@ import {
   ListGroupItem,
   Form,
 } from 'react-bootstrap';
-
 const ProductDetails = ({ history, match }) => {
   const [qty, setQty] = useState(1);
-
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
-    // const fetchProduct = async () => {
-    //   const { data } = await axios.get(
-    //     `http://localhost:8080/api/products/${match.params.id}`
-    //   );
-    //   setProduct(data);
-    // };
-    // fetchProduct();
   }, [dispatch, match]);
 
-  const addToCart = () => {
+  const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
-
   return (
-    <div>
+    <>
       <Link to='/' className='btn btn-light'>
-        <i class='fas fa-arrow-left    '></i>
+        <i className='fas fa-arrow-left    '></i>
         &nbsp; GO BACK
       </Link>
+
       <Row>
         <Col md={6}>
           <Image src={product.image} alt={product.name} fluid />
@@ -69,11 +60,10 @@ const ProductDetails = ({ history, match }) => {
               </Col>
             </Row>
           </ListGroupItem>
-
           {product.countInStock > 0 && (
             <ListGroupItem>
               <Row>
-                <Col>Quantity</Col>
+                <Col>Qty</Col>
                 <Form.Control
                   as='select'
                   value={qty}
@@ -88,15 +78,18 @@ const ProductDetails = ({ history, match }) => {
               </Row>
             </ListGroupItem>
           )}
-
           <ListGroupItem>
-            <Button className='btn-block' type='button' onClick={addToCart}>
+            <Button
+              className='btn-block'
+              type='button'
+              onClick={addToCartHandler}
+            >
               Add to cart
             </Button>
           </ListGroupItem>
         </Col>
       </Row>
-    </div>
+    </>
   );
 };
 
